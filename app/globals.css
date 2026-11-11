@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --acc: #1e8bc3;
+  --acc-glow: rgba(30, 139, 195, 0.55);
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #04060a;
+  color: #f4f6fa;
+  font-family: "Manrope Variable", Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(30, 139, 195, 0.4);
+  color: #ffffff;
+}
+
+@layer components {
+  /* Shisha karta */
+  .glass {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.028));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  .glass-strong {
+    background: linear-gradient(165deg, rgba(16, 21, 31, 0.92), rgba(10, 13, 20, 0.94));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+  /* Frame ichida yumshoq nur dog'i */
+  .radial-light {
+    background: radial-gradient(ellipse 70% 62% at 62% 44%, rgba(255, 255, 255, 0.09), transparent 62%);
+  }
+  /* Chip (pill) — baza */
+  .chip {
+    @apply inline-flex h-11 min-w-[2.75rem] items-center justify-center gap-2 rounded-full px-3 font-mono text-[13px] font-medium text-white/75 transition-all duration-300 ease-premium;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .chip:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+  }
+  .chip[data-active='true'] {
+    background: var(--acc);
+    border-color: transparent;
+    color: #06080c;
+    box-shadow: 0 6px 24px var(--acc-glow);
+  }
+  /* Pill tugmalar */
+  .btn-primary {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[13px] font-extrabold uppercase tracking-[0.14em] transition-all duration-300 ease-premium;
+    background: var(--acc);
+    color: #06080c;
+    box-shadow: 0 10px 36px var(--acc-glow);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+  }
+  .btn-ghost {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 text-[13px] font-bold uppercase tracking-[0.14em] text-white/85 transition-all duration-300 ease-premium hover:border-white/30 hover:text-white;
+  }
+  .icon-btn {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/[0.12] bg-white/5 text-white/80 transition-all duration-300 ease-premium hover:border-white/30 hover:text-white;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.32em] text-white/45;
+  }
+  .tick-line {
+    @apply h-px flex-1 bg-white/10;
+  }
+  .card-hover {
+    @apply transition-all duration-500 ease-premium hover:-translate-y-1.5;
+  }
+}
+
+/* Scrollbarni yashirish (gorizontal qatorlar) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Yupqa vertikal scrollbar — dark */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+/* Maydalangan karanda/plita nuri */
+.product-tile {
+  background: radial-gradient(circle at 50% 42%, #131a26 0%, #090d14 72%);
+}
+.hero-tile {
+  background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.1), transparent 55%);
+}
+
+/* Fokus halqasi — a11y */
+:focus-visible {
+  outline: 2px solid #4cc2ff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Chiplar gorizontal scroll qatorlari uchun fade chekkasi */
+.fade-x {
+  mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent);
+}
